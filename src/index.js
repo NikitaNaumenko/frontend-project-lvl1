@@ -1,11 +1,14 @@
 import readlineSync from 'readline-sync';
+import { car, cdr } from '@hexlet/pairs';
 
 const roundsCount = 3;
 const initRound = 1;
 
-const getRandom = (max, min) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-export default () => {
+export default (task, gameData) => {
+  console.log('Welcome to the Brain Games!');
+  console.log(task);
+
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hi ${userName} !`);
 
@@ -15,17 +18,20 @@ export default () => {
       return;
     }
 
-    const randomNumber = getRandom(1, 100);
-    console.log(`Question: ${randomNumber}`);
+    const game = gameData();
+    const question = car(game);
+    const answer = cdr(game);
+
+    console.log(`Question: ${question}`);
+
     const userAnswer = readlineSync.question('Your answer:');
-    if ((randomNumber % 2 === 0 && userAnswer === 'yes') || (randomNumber % 2 !== 0 && userAnswer === 'no')) {
-      console.log('Correct!');
-      iter(acc + 1);
-    } else {
-      console.log("'yes' is wrong answer ;(. Correct answer was 'no'.");
+    if (answer !== userAnswer) {
+      console.log(`${userAnswer} is wrong answer ;(. Correct answer was '${answer}'.`);
       console.log(`Let's try again, ${userName}`);
     }
-  };
 
+    console.log('Correct!');
+    iter(acc + 1);
+  };
   return iter(initRound);
 };
