@@ -3,4 +3,4 @@
 
 [![Build Status](https://travis-ci.org/NikitaNaumenko/frontend-project-lvl1.svg?branch=master)](https://travis-ci.org/NikitaNaumenko/frontend-project-lvl1)
 
-[![asciicast](https://asciinema.org/a/l56oMC7jbOyACrF78kzltKpKK.svg)](https://asciinema.org/a/l56oMC7jbOyACrF78kzltKpKK)
+[![asciicast](https://asciinema.org/a/n91qAiF9dkZVVW3vc8GlaOI3H.svg)](https://asciinema.org/a/n91qAiF9dkZVVW3vc8GlaOI3H)
