@@ -6,17 +6,17 @@ const createQA = (firstOperand, secondOperand, operator) => {
   switch (operator) {
     case 1: {
       const question = `${firstOperand} + ${secondOperand}`;
-      const answer = firstOperand + secondOperand;
+      const answer = String(firstOperand + secondOperand);
       return cons(question, answer);
     }
     case 2: {
       const question = `${firstOperand} - ${secondOperand}`;
-      const answer = firstOperand - secondOperand;
+      const answer = String(firstOperand - secondOperand);
       return cons(question, answer);
     }
     default: {
       const question = `${firstOperand} * ${secondOperand}`;
-      const answer = firstOperand * secondOperand;
+      const answer = String(firstOperand * secondOperand);
       return cons(question, answer);
     }
   }
