@@ -1,7 +1,8 @@
 {
   "name": "frontend-project-lvl1",
   "version": "1.4.0",
-  "description": "",
+  "description": "Console mini games",
+  "keywords": ["brain-games", "hexlet"],
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
