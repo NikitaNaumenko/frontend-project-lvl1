@@ -59,9 +59,10 @@ const getGameData = () => {
   const progressionStep = getRandom();
   const beginProgressionNumber = getRandom();
   const progression = getProgression(beginProgressionNumber, progressionStep);
-  const hiddenProgressionElement = beginProgressionNumber + hiddenProgressionIndexElement * progressionStep;
+  const hiddenProgressionElement = beginProgressionNumber
+    + hiddenProgressionIndexElement * progressionStep;
 
-  const answer = String(hiddenProgressionElement)
+  const answer = String(hiddenProgressionElement);
   const question = createQuestion(progression, hiddenProgressionIndexElement);
 
   return cons(question, answer);
