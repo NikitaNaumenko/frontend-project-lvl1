@@ -4,21 +4,20 @@ import { car, cdr } from '@hexlet/pairs';
 const roundsCount = 3;
 const initRound = 1;
 
-
-export default (task, gameData) => {
+export default (task, makeGame) => {
   console.log('Welcome to the Brain Games!');
   console.log(task);
 
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hi ${userName} !`);
 
-  const iter = (acc) => {
-    if (acc > roundsCount) {
+  const iter = (counter) => {
+    if (counter > roundsCount) {
       console.log(`Congratulations, ${userName}!`);
       return;
     }
 
-    const game = gameData();
+    const game = makeGame();
     const question = car(game);
     const answer = cdr(game);
 
@@ -32,7 +31,7 @@ export default (task, gameData) => {
     }
 
     console.log('Correct!');
-    iter(acc + 1);
+    iter(counter + 1);
   };
   return iter(initRound);
 };

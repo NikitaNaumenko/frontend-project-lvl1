@@ -1,12 +1,12 @@
 import { cons, car, cdr } from '@hexlet/pairs';
-import startGame from '..';
-import getRandom from '../utils';
+import makeGame from '..';
+import { getRandom } from '../utils';
 
 const task = 'What number is missing in the progression?';
 
 const progressionLength = 10;
 
-const isEmpty = list => cdr(list) === null;
+const isEmpty = list => list === null;
 
 const reverse = (list) => {
   const initElement = car(list);
@@ -20,16 +20,14 @@ const reverse = (list) => {
     return iter(cdr(tail), newAcc);
   };
 
-  return iter(list, initPair);
+  return iter(cdr(list), initPair);
 };
 
-const getProgression = () => {
-  const step = getRandom();
-  const beginProgression = getRandom();
-  const beginElement = cons(beginProgression, null);
+const getProgression = (beginNumber, step) => {
+  const beginElement = cons(beginNumber, null);
 
   const iter = (acc, counter) => {
-    if (counter > progressionLength) {
+    if (counter === progressionLength) {
       return reverse(acc);
     }
 
@@ -38,17 +36,6 @@ const getProgression = () => {
   };
 
   return iter(beginElement, 1);
-};
-
-const getElementByIndex = (list, index) => {
-  const iter = (tail, counter) => {
-    if (index === counter) {
-      return car(tail);
-    }
-
-    return iter(cdr(tail), counter + 1);
-  };
-  return iter(list, 0);
 };
 
 const createQuestion = (list, hiddenIndexElement) => {
@@ -67,12 +54,17 @@ const createQuestion = (list, hiddenIndexElement) => {
   return iter('', list, 0);
 };
 
-const getQA = () => {
-  const progression = getProgression();
-  const hiddenIndexElement = getRandom(0, 9);
-  const answer = String(getElementByIndex(progression, hiddenIndexElement));
-  const question = createQuestion(progression, hiddenIndexElement);
+const getGameData = () => {
+  const hiddenProgressionIndexElement = getRandom(0, progressionLength - 1);
+  const progressionStep = getRandom();
+  const beginProgressionNumber = getRandom();
+  const progression = getProgression(beginProgressionNumber, progressionStep);
+  const hiddenProgressionElement = beginProgressionNumber + hiddenProgressionIndexElement * progressionStep;
+
+  const answer = String(hiddenProgressionElement)
+  const question = createQuestion(progression, hiddenProgressionIndexElement);
+
   return cons(question, answer);
 };
 
-export default () => startGame(task, getQA);
+export default () => makeGame(task, getGameData);

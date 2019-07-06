@@ -1,33 +1,38 @@
 import { cons } from '@hexlet/pairs';
-import startGame from '..';
-import getRandom from '../utils';
+import makeGame from '..';
+import { getRandom, getElementByIndex } from '../utils';
 
-const createQA = (firstOperand, secondOperand, operator) => {
+const createOperators = () => cons('*', cons('+', cons('-', null)));
+
+const createAnswer = (firstOperand, secondOperand, operator) => {
   switch (operator) {
-    case 1: {
-      const question = `${firstOperand} + ${secondOperand}`;
-      const answer = String(firstOperand + secondOperand);
-      return cons(question, answer);
+    case '+': {
+      return firstOperand + secondOperand;
     }
-    case 2: {
-      const question = `${firstOperand} - ${secondOperand}`;
-      const answer = String(firstOperand - secondOperand);
-      return cons(question, answer);
+    case '-': {
+      return firstOperand - secondOperand;
     }
-    default: {
-      const question = `${firstOperand} * ${secondOperand}`;
-      const answer = String(firstOperand * secondOperand);
-      return cons(question, answer);
+    case '*': {
+      return firstOperand * secondOperand;
     }
+    default: break;
   }
+  return null;
 };
 
 const task = 'What is the result of the expression?';
 
-const getQA = () => {
+const getGameData = () => {
   const firstOperand = getRandom();
   const secondOperand = getRandom();
-  const operator = getRandom(1, 3);
-  return createQA(firstOperand, secondOperand, operator);
+
+  const operators = createOperators();
+  const indexOperator = getRandom(0, 2);
+  const operator = getElementByIndex(operators, indexOperator);
+
+  const question = `${firstOperand} ${operator} ${secondOperand}`;
+  const answer = createAnswer(firstOperand, secondOperand, operator);
+
+  return cons(question, answer);
 };
-export default () => startGame(task, getQA);
+export default () => makeGame(task, getGameData);

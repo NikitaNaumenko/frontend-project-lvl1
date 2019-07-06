@@ -1,30 +1,29 @@
 import { cons } from '@hexlet/pairs';
-import startGame from '..';
-import getRandom from '../utils';
+import makeGame from '..';
+import { getRandom } from '../utils';
 
 const task = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-const isDivide = (a, b) => a % b === 0;
-const square = n => n ** 2;
+const isPrime = (num) => {
+  if (num < 2) return false;
 
-const findDivisior = (number, divisor) => {
-  if (square(divisor) > number) {
-    return number;
-  }
+  const iter = (div) => {
+    if (div > num / 2) {
+      return true;
+    }
 
-  if (isDivide(number, divisor)) {
-    return divisor;
-  }
+    if (num % div === 0) {
+      return false;
+    }
 
-  return findDivisior(number, divisor + 1);
+    return iter(div + 1);
+  };
+  return iter(2);
 };
 
-const isPrime = (number, divisor) => number === findDivisior(number, divisor);
-
-const getQA = () => {
+const getGameData = () => {
   const question = getRandom();
-  const divisor = 2;
-  const answer = isPrime(question, divisor) ? 'yes' : 'no';
+  const answer = isPrime(question) ? 'yes' : 'no';
   return cons(question, answer);
 };
-export default () => startGame(task, getQA);
+export default () => makeGame(task, getGameData);
