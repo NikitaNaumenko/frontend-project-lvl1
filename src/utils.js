@@ -11,3 +11,15 @@ export const getElementByIndex = (list, index) => {
   };
   return iter(list, 0);
 };
+
+export const length = (list) => {
+  const iter = (tail, acc) => {
+    if (cdr(tail) === null) {
+      return acc;
+    }
+
+    return iter(cdr(tail), acc + 1);
+  };
+
+  return iter(list, 0);
+};

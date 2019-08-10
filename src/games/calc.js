@@ -1,20 +1,17 @@
 import { cons } from '@hexlet/pairs';
 import makeGame from '..';
-import { getRandom, getElementByIndex } from '../utils';
+import { getRandom, getElementByIndex, length } from '../utils';
 
 const createOperators = () => cons('*', cons('+', cons('-', null)));
 
 const createAnswer = (firstOperand, secondOperand, operator) => {
   switch (operator) {
-    case '+': {
+    case '+':
       return firstOperand + secondOperand;
-    }
-    case '-': {
+    case '-':
       return firstOperand - secondOperand;
-    }
-    case '*': {
+    case '*':
       return firstOperand * secondOperand;
-    }
     default: break;
   }
   return null;
@@ -27,12 +24,13 @@ const getGameData = () => {
   const secondOperand = getRandom();
 
   const operators = createOperators();
-  const indexOperator = getRandom(0, 2);
+  const operatorsLength = length(operators);
+  const indexOperator = getRandom(0, operatorsLength - 1);
   const operator = getElementByIndex(operators, indexOperator);
 
   const question = `${firstOperand} ${operator} ${secondOperand}`;
   const answer = createAnswer(firstOperand, secondOperand, operator);
 
-  return cons(question, answer);
+  return cons(question, String(answer));
 };
 export default () => makeGame(task, getGameData);

@@ -6,7 +6,7 @@ const task = 'Find the greatest common divisor of given numbers.';
 
 const findGcd = (a, b) => {
   if (b === 0) {
-    return String(a);
+    return a;
   }
   return findGcd(b, a % b);
 };
@@ -16,6 +16,6 @@ const getGameData = () => {
   const secondOperand = getRandom();
   const question = `${firstOperand} ${secondOperand}`;
   const answer = findGcd(firstOperand, secondOperand);
-  return cons(question, answer);
+  return cons(question, String(answer));
 };
 export default () => makeGame(task, getGameData);

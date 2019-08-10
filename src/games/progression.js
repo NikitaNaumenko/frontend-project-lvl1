@@ -55,17 +55,15 @@ const createQuestion = (list, hiddenIndexElement) => {
 };
 
 const getGameData = () => {
-  const hiddenProgressionIndexElement = getRandom(0, progressionLength - 1);
-  const progressionStep = getRandom();
-  const beginProgressionNumber = getRandom();
-  const progression = getProgression(beginProgressionNumber, progressionStep);
-  const hiddenProgressionElement = beginProgressionNumber
-    + hiddenProgressionIndexElement * progressionStep;
+  const hiddenIndexElement = getRandom(0, progressionLength - 1);
+  const step = getRandom();
+  const beginElement = getRandom();
+  const progression = getProgression(beginElement, step);
 
-  const answer = String(hiddenProgressionElement);
-  const question = createQuestion(progression, hiddenProgressionIndexElement);
+  const answer = beginElement + hiddenIndexElement * step;
+  const question = createQuestion(progression, hiddenIndexElement);
 
-  return cons(question, answer);
+  return cons(question, String(answer));
 };
 
 export default () => makeGame(task, getGameData);
