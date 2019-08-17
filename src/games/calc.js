@@ -25,8 +25,8 @@ const getGameData = () => {
 
   const operators = createOperators();
   const operatorsLength = length(operators);
-  const indexOperator = getRandom(0, operatorsLength - 1);
-  const operator = getElementByIndex(operators, indexOperator);
+  const operatorIndex = getRandom(0, operatorsLength - 1);
+  const operator = getElementByIndex(operators, operatorIndex);
 
   const question = `${firstOperand} ${operator} ${secondOperand}`;
   const answer = createAnswer(firstOperand, secondOperand, operator);

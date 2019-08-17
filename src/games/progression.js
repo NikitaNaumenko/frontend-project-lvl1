@@ -23,11 +23,11 @@ const reverse = (list) => {
   return iter(cdr(list), initPair);
 };
 
-const getProgression = (beginNumber, step) => {
+const getProgression = (beginNumber, step, length) => {
   const beginElement = cons(beginNumber, null);
 
   const iter = (acc, counter) => {
-    if (counter === progressionLength) {
+    if (counter === length) {
       return reverse(acc);
     }
 
@@ -55,13 +55,13 @@ const createQuestion = (list, hiddenIndexElement) => {
 };
 
 const getGameData = () => {
-  const hiddenIndexElement = getRandom(0, progressionLength - 1);
+  const hiddenElementIndex = getRandom(0, progressionLength - 1);
   const step = getRandom();
   const beginElement = getRandom();
-  const progression = getProgression(beginElement, step);
+  const progression = getProgression(beginElement, step, progressionLength);
 
-  const answer = beginElement + hiddenIndexElement * step;
-  const question = createQuestion(progression, hiddenIndexElement);
+  const answer = beginElement + hiddenElementIndex * step;
+  const question = createQuestion(progression, hiddenElementIndex);
 
   return cons(question, String(answer));
 };

@@ -4,7 +4,7 @@ import { car, cdr } from '@hexlet/pairs';
 const roundsCount = 3;
 const initRound = 1;
 
-export default (task, makeGame) => {
+export default (task, generateGameData) => {
   console.log('Welcome to the Brain Games!');
   console.log(task);
 
@@ -17,9 +17,9 @@ export default (task, makeGame) => {
       return;
     }
 
-    const game = makeGame();
-    const question = car(game);
-    const answer = cdr(game);
+    const gameData = generateGameData();
+    const question = car(gameData);
+    const answer = cdr(gameData);
 
     console.log(`Question: ${question}`);
 
