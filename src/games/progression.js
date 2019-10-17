@@ -48,7 +48,8 @@ const createQuestion = (list, hiddenElementIndex) => {
     }
 
     const newElement = car(tail);
-    return iter(`${acc} ${newElement}`, cdr(tail), counter + 1);
+    const newAcc = acc.length > 0 ? `${acc} ${newElement}` : `${newElement}`;
+    return iter(newAcc, cdr(tail), counter + 1);
   };
   return iter('', list, 0);
 };
