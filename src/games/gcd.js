@@ -18,4 +18,5 @@ const getGameData = () => {
   const answer = findGcd(firstOperand, secondOperand);
   return cons(question, String(answer));
 };
+
 export default () => makeGame(task, getGameData);

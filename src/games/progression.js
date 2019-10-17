@@ -10,7 +10,6 @@ const isEmpty = list => list === null;
 
 const reverse = (list) => {
   const initElement = car(list);
-  const initPair = cons(initElement, null);
 
   const iter = (tail, acc) => {
     if (isEmpty(tail)) {
@@ -20,7 +19,7 @@ const reverse = (list) => {
     return iter(cdr(tail), newAcc);
   };
 
-  return iter(cdr(list), initPair);
+  return iter(cdr(list), cons(initElement, null));
 };
 
 const getProgression = (beginNumber, step, length) => {
@@ -38,13 +37,13 @@ const getProgression = (beginNumber, step, length) => {
   return iter(beginElement, 1);
 };
 
-const createQuestion = (list, hiddenIndexElement) => {
+const createQuestion = (list, hiddenElementIndex) => {
   const iter = (acc, tail, counter) => {
     if (isEmpty(tail)) {
       return acc;
     }
 
-    if (counter === hiddenIndexElement) {
+    if (counter === hiddenElementIndex) {
       return iter(`${acc} ..`, cdr(tail), counter + 1);
     }
 
@@ -57,10 +56,10 @@ const createQuestion = (list, hiddenIndexElement) => {
 const getGameData = () => {
   const hiddenElementIndex = getRandom(0, progressionLength - 1);
   const step = getRandom();
-  const beginElement = getRandom();
-  const progression = getProgression(beginElement, step, progressionLength);
+  const start = getRandom();
+  const progression = getProgression(start, step, progressionLength);
 
-  const answer = beginElement + hiddenElementIndex * step;
+  const answer = start + hiddenElementIndex * step;
   const question = createQuestion(progression, hiddenElementIndex);
 
   return cons(question, String(answer));

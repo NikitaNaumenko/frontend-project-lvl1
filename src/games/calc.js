@@ -33,4 +33,5 @@ const getGameData = () => {
 
   return cons(question, String(answer));
 };
+
 export default () => makeGame(task, getGameData);

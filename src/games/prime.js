@@ -26,4 +26,5 @@ const getGameData = () => {
   const answer = isPrime(question) ? 'yes' : 'no';
   return cons(question, answer);
 };
+
 export default () => makeGame(task, getGameData);
