@@ -1,6 +1,6 @@
 import { cons, car, cdr } from '@hexlet/pairs';
 import makeGame from '..';
-import { getRandom } from '../utils';
+import getRandom from '../utils';
 
 const task = 'What number is missing in the progression?';
 

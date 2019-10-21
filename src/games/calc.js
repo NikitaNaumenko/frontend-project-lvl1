@@ -1,6 +1,29 @@
-import { cons } from '@hexlet/pairs';
+import { cons, car, cdr } from '@hexlet/pairs';
 import makeGame from '..';
-import { getRandom, getElementByIndex, length } from '../utils';
+import getRandom from '../utils';
+
+export const getElementByIndex = (list, index) => {
+  const iter = (tail, counter) => {
+    if (index === counter) {
+      return car(tail);
+    }
+
+    return iter(cdr(tail), counter + 1);
+  };
+  return iter(list, 0);
+};
+
+export const getLength = (list) => {
+  const iter = (tail, acc) => {
+    if (cdr(tail) === null) {
+      return acc;
+    }
+
+    return iter(cdr(tail), acc + 1);
+  };
+
+  return iter(list, 0);
+};
 
 const createOperators = () => cons('*', cons('+', cons('-', null)));
 
@@ -24,7 +47,7 @@ const getGameData = () => {
   const secondOperand = getRandom();
 
   const operators = createOperators();
-  const operatorsLength = length(operators);
+  const operatorsLength = getLength(operators);
   const operatorIndex = getRandom(0, operatorsLength - 1);
   const operator = getElementByIndex(operators, operatorIndex);
 
